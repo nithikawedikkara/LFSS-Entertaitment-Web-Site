@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-border-custom: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-accent: var(--accent);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-fg: var(--accent-fg);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --radius-custom: var(--radius);
+}
+
+:root, [data-theme="purple-dark"] {
+  --bg: #07070a;
+  --bg-elev: #111116;
+  --bg-card: rgba(139, 92, 246, 0.03);
+  --bg-card-hover: rgba(139, 92, 246, 0.08);
+  --border: rgba(139, 92, 246, 0.15);
+  --border-strong: rgba(139, 92, 246, 0.45);
+  --fg: #f5f5f7;
+  --fg-muted: #94a3b8;
+  --accent: #8b5cf6;
+  --accent-glow: rgba(139, 92, 246, 0.35);
+  --accent-fg: #ffffff;
+  --danger: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --radius: 14px;
+}
+
+[data-theme="midnight"] {
+  --bg: #030712;
+  --bg-elev: #0f172a;
+  --bg-card: rgba(56, 189, 248, 0.03);
+  --bg-card-hover: rgba(56, 189, 248, 0.08);
+  --border: rgba(56, 189, 248, 0.15);
+  --border-strong: rgba(56, 189, 248, 0.45);
+  --fg: #f8fafc;
+  --fg-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.35);
+  --accent-fg: #030712;
+  --danger: #f43f5e;
+  --success: #10b981;
+  --warning: #fbbf24;
+  --radius: 14px;
+}
+
+[data-theme="synthwave"] {
+  --bg: #140722;
+  --bg-elev: #240a3e;
+  --bg-card: rgba(236, 72, 153, 0.04);
+  --bg-card-hover: rgba(236, 72, 153, 0.1);
+  --border: rgba(244, 63, 94, 0.2);
+  --border-strong: rgba(236, 72, 153, 0.65);
+  --fg: #fdf2f8;
+  --fg-muted: #a78bfa;
+  --accent: #ec4899;
+  --accent-glow: rgba(236, 72, 153, 0.4);
+  --accent-fg: #ffffff;
+  --danger: #f43f5e;
+  --success: #10b981;
+  --warning: #fbbf24;
+  --radius: 14px;
+}
+
+[data-theme="paper"] {
+  --bg: #fbfbfa;
+  --bg-elev: #f4f3ef;
+  --bg-card: #fdfdfc;
+  --bg-card-hover: #eae7e1;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.25);
+  --fg: #18181b;
+  --fg-muted: #71717a;
+  --accent: #18181b;
+  --accent-glow: rgba(24, 24, 27, 0.08);
+  --accent-fg: #ffffff;
+  --danger: #dc2626;
+  --success: #16a34a;
+  --warning: #d97706;
+  --radius: 12px;
+}
+
+[data-theme="terminal"] {
+  --bg: #030703;
+  --bg-elev: #0a140a;
+  --bg-card: rgba(34, 197, 94, 0.02);
+  --bg-card-hover: rgba(34, 197, 94, 0.08);
+  --border: rgba(34, 197, 94, 0.15);
+  --border-strong: rgba(34, 197, 94, 0.5);
+  --fg: #22c55e;
+  --fg-muted: #166534;
+  --accent: #22c55e;
+  --accent-glow: rgba(34, 197, 94, 0.25);
+  --accent-fg: #030703;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --warning: #eab308;
+  --radius: 4px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Background Glow Effect */
+body::before {
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(800px 500px at 15% -10%, var(--accent-glow), transparent 60%),
+              radial-gradient(700px 500px at 90% 0, var(--accent-glow), transparent 65%);
+  opacity: 0.35;
+  z-index: 0;
+  position: fixed;
+  inset: 0;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+[data-theme="paper"] body::before {
+  opacity: 0.05;
+}
+
+[data-theme="terminal"] body::before {
+  background: radial-gradient(1000px 600px at 50% -20%, rgba(34, 197, 94, 0.1), transparent 60%);
+  opacity: 0.5;
+}
+
+/* Custom UI Cards & Pills */
+.lfss-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lfss-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.5), 0 0 12px var(--accent-glow);
+}
+
+.lfss-pill {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  border-radius: 9999px;
+  transition: all 0.15s ease;
+}
+
+.lfss-pill:hover, .lfss-pill-active {
+  border-color: var(--border-strong);
+  color: var(--fg);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elev);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* CRTs Scanlines for terminal theme */
+[data-theme="terminal"]::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 99999;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.15;
+}

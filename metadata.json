@@ -1,0 +1,6 @@
+{
+  "name": "LFSS",
+  "description": "Lumen Frames Stream Service, a curated directory of streaming sites with fuzzy search, favorites, custom themes, and responsive design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
